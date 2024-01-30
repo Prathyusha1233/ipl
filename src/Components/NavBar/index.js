@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import "./index.css";
-import { Button, Space } from "antd";
+import { Button } from "antd";
 import { googleLogout } from "@react-oauth/google";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { resetUI } from "../../actions/userActions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Layout, Menu } from "antd";
+import { Layout } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
 
 const { Header } = Layout;
