@@ -1,0 +1,11 @@
+.welcome-message {
+  font-weight: 100;
+  padding-top: 18px;
+  font-size: 1.5em;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.8);
+  margin-top: 40px;
+}
+.dashboard-container {
+  padding-top: 16px;
+}

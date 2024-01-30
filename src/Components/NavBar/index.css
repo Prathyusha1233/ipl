@@ -1,0 +1,48 @@
+.navbar {
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 74px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  /* margin: -26px -8px 0px -8px; */
+  box-shadow: 10px 10px 5px 0px rgb(212 209 209 / 75%);
+}
+.sign-out {
+  padding: 8px;
+  /* margin-bottom: 8px; */
+  /* margin-top: 8px; */
+  float: right;
+  display: flex;
+  align-items: center;
+  /* background-color: rgba(0, 0, 0, 0.8); */
+}
+.navbar img {
+  max-width: 100px; /* Adjust the max-width as needed */
+  height: 62px;
+  border-radius: 50%;
+  margin-top: 8px;
+  margin-left: 4px;
+  /* border-radius: 50%;
+  border: 1px solid rgba(24, 23, 23, 0); */
+}
+.sign-out-btn {
+  /* background-color: rgba(0, 0, 0, 0.8); */
+}
+/* 
+@media (max-width: 767px) {
+  .navbar {
+    margin: -26px -33px 0px -8px;
+  }
+} */
+.test {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-style: italic;
+  font-family: cursive;
+  font-size: 24px;
+}

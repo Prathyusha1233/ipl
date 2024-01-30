@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Card } from "antd";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { PrivateRoute } from "./utils/PrivateRoute";
+import Dashboard from "./Pages/Dashboard";
+import Home from "./Pages/Home";
+import { connect } from "react-redux";
+import "./App.css";
 
-function App() {
+const App = ({ userIsValid }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+              
+        <Routes>
+                  
+          <Route path="/home" element={<Home />} />
+                  
+          <Route
+            exact
+            path="/dashboard"
+            element={userIsValid ? <Dashboard /> : <Navigate to="/home" />}
+          />
+                
+        </Routes>
+         
+      </BrowserRouter>
     </div>
   );
-}
+};
+const mapStateToProps = (state) => {
+  return {
+    userIsValid: state.user,
+  };
+};
 
-export default App;
+export default connect(mapStateToProps, null)(App);

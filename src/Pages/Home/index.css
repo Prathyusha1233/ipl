@@ -3,18 +3,16 @@
   float: right;
 }
 .app {
-  /* background-image: url('images/image1.jpg'); */
+  background-image: url("../../images/image1.jpg");
   height: 1000px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 .login-card {
   width: 312px;
   background: linear-gradient(to right, #e10000 0%, #2b0101 100%);
 }
-
 .login-card-container {
   display: flex;
   padding-left: 48px;
@@ -23,12 +21,11 @@
 
 @media only screen and (max-width: 480px) {
   .app {
-    background-image: url("images/image2.jpeg");
-    height: 900px;
+    background-image: url("../../images/iplcup.jpeg");
+    /* height: 900px; */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    margin: -26px;
   }
   .login-card-container {
     display: flex;

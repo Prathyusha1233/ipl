@@ -1,0 +1,9 @@
+.login-button{
+    display: flex;
+    justify-content:center;
+    /* margin-top: 20px; */
+  }
+  .error-msg{
+    color:white;
+    padding-top: 20px
+  }
