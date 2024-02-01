@@ -23,7 +23,6 @@
 
 @media only screen and (max-width: 480px) {
   .app {
-    background-image: url("images/image2.jpeg");
     height: 900px;
     background-position: center;
     background-repeat: no-repeat;
@@ -33,7 +32,6 @@
   .login-card-container {
     display: flex;
     padding-left: 0px;
-    /* padding-top: 0px; */
     justify-content: center;
   }
   .login-card {
