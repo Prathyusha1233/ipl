@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
-import { getPoints } from "../../actions/userActions";
+import { getPoints, resetPoints } from "../../actions/userActions";
 import { connect } from "react-redux";
 import { TrophyOutlined, CrownOutlined, StarOutlined } from "@ant-design/icons";
 import { Table, Tag, Skeleton } from "antd";
 const { Column } = Table;
 
 const Points = ({ points, dispatch, userData }) => {
-  console.log("userData", userData);
   useEffect(() => {
     if (Object.keys(userData).length > 0) {
       dispatch(getPoints());
     }
+    return () => {
+      dispatch(resetPoints());
+    };
   }, [userData]);
 
   const rankedData =

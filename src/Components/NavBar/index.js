@@ -16,8 +16,10 @@ const NavBar = ({ resetUI }) => {
   const logOut = () => {
     googleLogout();
     resetUI();
-    navigate("/home");
+    window.history.replaceState(null, "", "/");
+    navigate("/");
   };
+
   return (
     <div className="navbar">
       <img src="/logo3.png" alt="Logo" />

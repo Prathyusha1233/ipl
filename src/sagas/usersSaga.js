@@ -33,6 +33,12 @@ function* validateUser({ email }) {
         description: "User is not Registered",
       });
     }
+    if (error) {
+      notification.error({
+        message: "Validate User Failed",
+        description: `${error.message}`,
+      });
+    }
   }
 }
 
@@ -50,6 +56,12 @@ function* sheduleMatches({ userId }) {
     yield put({ type: GET_MATCH_INFO_SUCCESS, data: matches.data });
   } catch (error) {
     yield put({ type: GET_MATCH_INFO_FAILED, message: error.message });
+    if (error) {
+      notification.error({
+        message: "Failed to Get the Matches",
+        description: `${error.message}`,
+      });
+    }
   }
 }
 
@@ -61,7 +73,6 @@ function* updateMatchesSaga({ updated_matches, selectedTeam, matchId }) {
       selectedTeam: selectedTeam,
       userId: userdetails.userId,
     };
-    console.log("updated_matches", updated_matches);
 
     const getTeamsForMatchId = (matchId) => {
       const match = updated_matches.find((match) => match.matchId === matchId);
@@ -86,6 +97,12 @@ function* updateMatchesSaga({ updated_matches, selectedTeam, matchId }) {
     yield put(getMatchInfo(userdetails.userId));
   } catch (error) {
     //yield put({ type: SET_TABLE_DATA_FAILED, message: error.message });
+    if (error) {
+      notification.error({
+        message: "Update Matches Failed",
+        description: `${error.message}`,
+      });
+    }
   }
 }
 
@@ -113,6 +130,12 @@ function* updateWinningMatchSaga({ updated_matches, winningTeam, matchId }) {
     yield put(getMatchInfo(userdetails.userId));
   } catch (error) {
     //yield put({ type: SET_TABLE_DATA_FAILED, message: error.message });
+    if (error) {
+      notification.error({
+        message: "Update Winning Match Failed",
+        description: `${error.message}`,
+      });
+    }
   }
 }
 
@@ -121,7 +144,13 @@ function* getPointsSaga() {
     const points = yield call(axios.get, "http://localhost:8080/points");
     yield put({ type: GET_POINTS_SUCCESS, data: points.data });
   } catch (error) {
-    yield put({ type: GET_MATCH_INFO_FAILED, message: error.message });
+    //yield put({ type: GET_MATCH_INFO_FAILED, message: error.message });
+    if (error) {
+      notification.error({
+        message: "Get Points Failed",
+        description: `${error.message}`,
+      });
+    }
   }
 }
 

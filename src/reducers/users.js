@@ -4,6 +4,7 @@ import {
   GET_POINTS_SUCCESS,
   GET_VALID_USER_FAILED,
   GET_VALID_USER_SUCCESS,
+  RESET_POINTS,
   RESET_UI,
   UPDATE_MATCHES_SUCCESS,
   UPDATE_WINNING_MATCH,
@@ -37,6 +38,8 @@ export const userReducer = (state = initialContacts, action) => {
       return { ...state, matches: action.data };
     case GET_POINTS_SUCCESS:
       return { ...state, points: action.data };
+    case RESET_POINTS:
+      return { ...state, points: [] };
     default:
       return state;
   }

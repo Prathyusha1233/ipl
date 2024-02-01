@@ -27,7 +27,12 @@ export const getPoints = () => {
   return { type: GET_POINTS };
 };
 
+export const resetPoints = () => {
+  return { type: GET_POINTS };
+};
+
+
 export const resetUI = () => {
-  localStorage.removeItem("userDetails");
+ localStorage.removeItem("userDetails");
   return { type: RESET_UI };
 };

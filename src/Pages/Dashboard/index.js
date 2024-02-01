@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import { Select, Table, Tag, Skeleton, Switch, Tabs } from "antd";
 import Points from "../../Components/Points";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 const { Column } = Table;
 const { TabPane } = Tabs;
 
@@ -19,6 +20,13 @@ const Dashboard = React.memo(({ matches, userData, dispatch }) => {
   const location = useLocation();
 
   const [activeTab, setActiveTab] = useState("next5matches");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!location.state.userDetails.email) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   const filteredData =
     activeTab === "next5matches"
@@ -121,7 +129,6 @@ const Dashboard = React.memo(({ matches, userData, dispatch }) => {
     );
   };
 
-  console.log("filteredData", filteredData);
   const renderTable = () => (
     <Table
       style={{ width: "100%" }}
@@ -170,7 +177,6 @@ const Dashboard = React.memo(({ matches, userData, dispatch }) => {
           <SelectTeamColumn
             record={record}
             onSelectTeam={(key, value) => {
-              console.log(key, value);
               handleCategoryChange(value, key);
             }}
           />
@@ -186,7 +192,6 @@ const Dashboard = React.memo(({ matches, userData, dispatch }) => {
             <SelectWinningTeamColumn
               record={record}
               onSelectTeam={(key, value) => {
-                console.log(key, value);
                 handleChangeAdmin(value, key);
               }}
             />

@@ -15,12 +15,12 @@ const App = ({ userIsValid }) => {
               
         <Routes>
                   
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
                   
           <Route
             exact
             path="/dashboard"
-            element={userIsValid ? <Dashboard /> : <Navigate to="/home" />}
+            element={userIsValid ? <Dashboard /> : <Navigate to="/" />}
           />
                 
         </Routes>
