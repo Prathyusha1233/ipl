@@ -2,7 +2,14 @@
   width: 60%;
   float: right;
 }
-.app {
+/* .app {
+  background-image: url("../../images/image1.jpg");
+  height: 1000px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+body {
   background-image: url("../../images/image1.jpg");
   height: 1000px;
   background-position: center;
@@ -20,9 +27,14 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .app {
+  /* .app {
     background-image: url("../../images/iplcup.jpeg");
-    /* height: 900px; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  } */
+  body {
+    background-image: url("../../images/iplcup.jpeg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
