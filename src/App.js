@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import "./App.css";
 
 const App = ({ userIsValid }) => {
+  console.log("userIsValid", Object.keys(userIsValid).length);
   return (
     <div>
       <BrowserRouter>
@@ -20,7 +21,13 @@ const App = ({ userIsValid }) => {
           <Route
             exact
             path="/dashboard"
-            element={userIsValid ? <Dashboard /> : <Navigate to="/" />}
+            element={
+              Object.keys(userIsValid).length > 0 ? (
+                <Dashboard />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
           />
                 
         </Routes>

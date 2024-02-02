@@ -1,6 +1,8 @@
 import { all, call, put, select, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 import {
+  GET_CURRENT_MATCH_INFO,
+  GET_CURRENT_MATCH_INFO_SUCCESS,
   GET_MATCH_INFO,
   GET_MATCH_INFO_FAILED,
   GET_MATCH_INFO_SUCCESS,
@@ -17,11 +19,13 @@ import {
 import { userSelector } from "../selectors/user";
 import { notification } from "antd";
 
-function* validateUser({ email }) {
+const baseUrl = "http://3.21.69.146:8080/";
+
+function* validateUser({ payload }) {
   try {
     let userInfo = yield call(
       axios.get,
-      "http://localhost:8080/validate-user?emailId=" + email
+      `${baseUrl}validate-user?emailId=${payload.email}&pin=${payload.password}`
     );
     yield put({ type: GET_VALID_USER_SUCCESS, data: userInfo.data });
   } catch (error) {
@@ -47,18 +51,36 @@ const getMatchInfo = (userId) => ({
   userId,
 });
 
-function* sheduleMatches({ userId }) {
+function* scheduleMatches({ userId }) {
   try {
-    let matches = yield call(
-      axios.get,
-      "http://localhost:8080/schedule?userId=" + userId
-    );
+    let matches = yield call(axios.get, `${baseUrl}schedule?userId=${userId}`);
     yield put({ type: GET_MATCH_INFO_SUCCESS, data: matches.data });
   } catch (error) {
     yield put({ type: GET_MATCH_INFO_FAILED, message: error.message });
     if (error) {
       notification.error({
         message: "Failed to Get the Matches",
+        description: `${error.message}`,
+      });
+    }
+  }
+}
+
+function* currentScheduleMatches({ userId }) {
+  try {
+    let current_matches = yield call(
+      axios.get,
+      `${baseUrl}current-schedule?userId=${userId}`
+    );
+    yield put({
+      type: GET_CURRENT_MATCH_INFO_SUCCESS,
+      data: current_matches.data,
+    });
+  } catch (error) {
+    // yield put({ type: GET_MATCH_INFO_FAILED, message: error.message });
+    if (error) {
+      notification.error({
+        message: "Failed to Get Current Matches",
         description: `${error.message}`,
       });
     }
@@ -81,7 +103,7 @@ function* updateMatchesSaga({ updated_matches, selectedTeam, matchId }) {
 
     const response = yield call(
       axios.post,
-      "http://localhost:8080/select-team",
+      `${baseUrl}select-team`,
       requestBody
     );
     if (response.status === 200) {
@@ -116,7 +138,7 @@ function* updateWinningMatchSaga({ updated_matches, winningTeam, matchId }) {
     };
     const response = yield call(
       axios.post,
-      "http://localhost:8080/winning-team",
+      `${baseUrl}winning-team`,
       requestBody
     );
     if (response.status === 200) {
@@ -141,7 +163,7 @@ function* updateWinningMatchSaga({ updated_matches, winningTeam, matchId }) {
 
 function* getPointsSaga() {
   try {
-    const points = yield call(axios.get, "http://localhost:8080/points");
+    const points = yield call(axios.get, `${baseUrl}points`);
     yield put({ type: GET_POINTS_SUCCESS, data: points.data });
   } catch (error) {
     //yield put({ type: GET_MATCH_INFO_FAILED, message: error.message });
@@ -156,7 +178,8 @@ function* getPointsSaga() {
 
 export function* watchUser() {
   yield all([takeLatest(GET_VALID_USER, validateUser)]);
-  yield all([takeLatest(GET_MATCH_INFO, sheduleMatches)]);
+  yield all([takeLatest(GET_MATCH_INFO, scheduleMatches)]);
+  yield all([takeLatest(GET_CURRENT_MATCH_INFO, currentScheduleMatches)]);
   yield all([takeLatest(UPDATE_MATCHES, updateMatchesSaga)]);
   yield all([takeLatest(UPDATE_WINNING_MATCH, updateWinningMatchSaga)]);
   yield all([takeLatest(GET_POINTS, getPointsSaga)]);

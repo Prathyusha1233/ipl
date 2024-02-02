@@ -1,22 +1,9 @@
-.carousel {
-  width: 60%;
-  float: right;
-}
 .app {
   background-image: url("../../images/image1.jpg");
-  height: 1000px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-/* body,
-.app {
-  background-image: url("../../images/image1.jpg");
-  height: 1000px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-} */
 .login-card {
   width: 312px;
   background: linear-gradient(to right, #e10000 0%, #2b0101 100%);
@@ -28,13 +15,6 @@
   margin-top: 32px;
   background-color: #f8f8f8;
 }
-.login-card-container {
-  display: flex;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 
 @media only screen and (max-width: 480px) {
   .app {
@@ -42,18 +22,14 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    height: 100vh;
   }
-  /* body {
-    background-image: url("../../images/iplcup.jpeg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  } */
   .login-card-container {
     display: flex;
-    padding-left: 0px;
-    /* padding-top: 0px; */
-    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   .login-card {
     width: 300px;

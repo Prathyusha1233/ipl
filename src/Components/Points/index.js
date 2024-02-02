@@ -13,7 +13,7 @@ const Points = ({ points, dispatch, userData }) => {
     return () => {
       dispatch(resetPoints());
     };
-  }, [userData]);
+  }, []);
 
   const rankedData =
     points &&

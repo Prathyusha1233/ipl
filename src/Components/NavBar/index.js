@@ -1,7 +1,6 @@
 import React from "react";
 import "./index.css";
 import { Button } from "antd";
-import { googleLogout } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { resetUI } from "../../actions/userActions";
 import { connect } from "react-redux";
@@ -11,12 +10,11 @@ import { LogoutOutlined } from "@ant-design/icons";
 
 const { Header } = Layout;
 
-const NavBar = ({ resetUI }) => {
+const NavBar = ({ dispatch }) => {
   const navigate = useNavigate();
   const logOut = () => {
-    googleLogout();
-    resetUI();
-    window.history.replaceState(null, "", "/");
+    dispatch(resetUI());
+    // window.history.replaceState(null, "", "/");
     navigate("/");
   };
 
@@ -35,12 +33,4 @@ const NavBar = ({ resetUI }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(
-    {
-      resetUI,
-    },
-    dispatch
-  );
-};
-export default connect(null, mapDispatchToProps)(NavBar);
+export default connect(null, null)(NavBar);
