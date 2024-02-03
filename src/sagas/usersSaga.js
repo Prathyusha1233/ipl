@@ -19,7 +19,7 @@ import {
 import { userSelector } from "../selectors/user";
 import { notification } from "antd";
 
-const baseUrl = "http://172.31.32.124:8080/";
+const baseUrl = "http://3.141.196.2:8080/";
 
 function* validateUser({ payload }) {
   try {
