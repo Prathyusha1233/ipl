@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { getPoints, resetPoints } from "../../actions/userActions";
 import { connect } from "react-redux";
-import { TrophyOutlined, CrownOutlined, StarOutlined } from "@ant-design/icons";
+import { CrownOutlined, StarOutlined } from "@ant-design/icons";
 import { Table, Tag, Skeleton } from "antd";
 const { Column } = Table;
 
@@ -13,7 +13,7 @@ const Points = ({ points, dispatch, userData }) => {
     return () => {
       dispatch(resetPoints());
     };
-  }, []);
+  }, [dispatch,userData]);
 
   const rankedData =
     points &&
@@ -23,7 +23,7 @@ const Points = ({ points, dispatch, userData }) => {
 
   return (
     <div className="dashboard-container">
-      {rankedData ? (
+      {rankedData.length > 1 ? (
         <Table
           pagination={false}
           dataSource={rankedData}

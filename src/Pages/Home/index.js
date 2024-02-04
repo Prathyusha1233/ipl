@@ -8,7 +8,7 @@ import {
   EyeInvisibleOutlined,
   EyeTwoTone,
 } from "@ant-design/icons";
-import { validateUser, resetUI } from "../../actions/userActions";
+import { validateUser } from "../../actions/userActions";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -25,28 +25,18 @@ const Home = React.memo(({ dispatch, userData }) => {
   };
   const handleClick = (e) => {
     dispatch(validateUser({ payload: { email, password } }));
-    // if (Object.keys(userData).length > 0) {
-    //   navigate("/dashboard");
-    // }
   };
 
-  // useEffect(() => {
-  //   navigate("/dashboard");
-
-  //   // return () => {
-  //   //   second;
-  //   // };
-  // }, [userData]);
-  console.log("test1", userData);
   useEffect(() => {
     if (Object.keys(userData).length > 0) {
-      console.log("test", userData);
+      sessionStorage.setItem("userData", JSON.stringify(userData));
       navigate("/dashboard");
     }
-    return () => {
-      resetUI();
-    };
-  }, [userData]);
+  }, [navigate,userData]);
+
+  // return () => {
+  //   resetUI();
+  // };
 
   return (
     <div className="app">

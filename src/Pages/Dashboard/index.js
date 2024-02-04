@@ -17,29 +17,26 @@ const { TabPane } = Tabs;
 const Dashboard = React.memo(
   ({ matches, userData, dispatch, current_matches }) => {
     const [activeTab, setActiveTab] = useState("next5matches");
-
-    console.log(activeTab);
     useEffect(() => {
       if (Object.keys(userData).length > 0 && activeTab === "next5matches") {
         dispatch(currentScheduleMatches(userData.userId));
       }
-      // if (
-      //   Object.keys(userData).length > 0 &&
-      //   activeTab === "alldata"
-      // ) {
-      //   dispatch(scheduleMatches(userData.userId));
-      // }
+      if (Object.keys(userData).length > 0 && activeTab === "alldata") {
+        dispatch(scheduleMatches(userData.userId));
+      }
       return () => {
         resetMatches();
       };
     }, [dispatch, userData, activeTab]);
 
+    // useEffect(() => {
+    //   if (Object.keys(userData).length === 0) {
+    //     dispatch(validateUser({ payload: { email, password } }));
+    //   }
+    // }, [userData]);
+
     const filteredData =
       activeTab === "next5matches" ? current_matches : matches;
-
-    console.log("filteredData",filteredData);
-
-    // console.log("current_matches", current_matches);
 
     const handleCategoryChange = (selectedTeam, matchId) => {
       const updated_matches = filteredData.map((item) =>
@@ -119,89 +116,93 @@ const Dashboard = React.memo(
       );
     };
 
-    const renderTable = () => (
-      <Table
-        style={{ width: "100%" }}
-        pagination={false}
-        dataSource={filteredData}
-        bordered
-        rowClassName={(record, index) =>
-          index % 2 === 0 ? "even-row" : "odd-row"
-        }
-        components={{
-          header: {
-            cell: (props) => (
-              <th
-                {...props}
-                className="custom-header"
-                style={{ backgroundColor: "##88b04b", color: "black" }}
-              />
-            ),
-          },
-        }}>
-        <Column
-          title="Match Date"
-          dataIndex="matchDate"
-          key="matchDate"
-          width={100}
-          render={(text, record) =>
-            convertTimestampToReadableDate(record.matchDate)
+    const renderTable = () => {
+      return filteredData.length > 1 ? (
+        <Table
+          style={{ width: "100%" }}
+          pagination={false}
+          dataSource={filteredData}
+          bordered
+          rowClassName={(record, index) =>
+            index % 2 === 0 ? "even-row" : "odd-row"
           }
-        />
-        <Column
-          title="Match"
-          key="match"
-          width={150}
-          render={(text, record) => (
-            <span>
-              {record.homeTeam} vs {record.awayTeam}
-            </span>
-          )}
-        />
-        <Column
-          title="Select Team"
-          dataIndex="selectedTeam"
-          key="selectedTeam"
-          width={50}
-          render={(text, record) => (
-            <SelectTeamColumn
-              record={record}
-              onSelectTeam={(key, value) => {
-                handleCategoryChange(value, key);
-              }}
-            />
-          )}
-        />
-        {userData.role === "FPLAdmin" && (
+          components={{
+            header: {
+              cell: (props) => (
+                <th
+                  {...props}
+                  className="custom-header"
+                  style={{ backgroundColor: "##88b04b", color: "black" }}
+                />
+              ),
+            },
+          }}>
           <Column
-            title="Winning Team"
-            dataIndex="winningTeam"
-            key="winningTeam"
+            title="Match Date"
+            dataIndex="matchDate"
+            key="matchDate"
             width={100}
+            render={(text, record) =>
+              convertTimestampToReadableDate(record.matchDate)
+            }
+          />
+          <Column
+            title="Match"
+            key="match"
+            width={150}
             render={(text, record) => (
-              <SelectWinningTeamColumn
+              <span>
+                {record.homeTeam} vs {record.awayTeam}
+              </span>
+            )}
+          />
+          <Column
+            title="Select Team"
+            dataIndex="selectedTeam"
+            key="selectedTeam"
+            width={50}
+            render={(text, record) => (
+              <SelectTeamColumn
                 record={record}
                 onSelectTeam={(key, value) => {
-                  handleChangeAdmin(value, key);
+                  handleCategoryChange(value, key);
                 }}
               />
             )}
           />
-        )}
-        <Column
-          width={70}
-          title="Result"
-          dataIndex="result"
-          render={(result, record) => (
-            <>
-              {result === "WON" && <Tag color="green">{result}</Tag>}
-
-              {result === "LOST" && <Tag color="red">{result}</Tag>}
-            </>
+          {userData.role === "FPLAdmin" && (
+            <Column
+              title="Winning Team"
+              dataIndex="winningTeam"
+              key="winningTeam"
+              width={100}
+              render={(text, record) => (
+                <SelectWinningTeamColumn
+                  record={record}
+                  onSelectTeam={(key, value) => {
+                    handleChangeAdmin(value, key);
+                  }}
+                />
+              )}
+            />
           )}
-        />
-      </Table>
-    );
+          <Column
+            width={70}
+            title="Result"
+            dataIndex="result"
+            render={(result, record) => (
+              <>
+                {result === "WON" && <Tag color="green">{result}</Tag>}
+
+                {result === "LOST" && <Tag color="red">{result}</Tag>}
+              </>
+            )}
+          />
+        </Table>
+      ) : (
+        <Skeleton />
+      );
+    };
 
     return (
       <>
@@ -210,18 +211,10 @@ const Dashboard = React.memo(
         <div className="dashboard-container">
           <Tabs activeKey={activeTab} onChange={(key) => setActiveTab(key)}>
             <TabPane tab="Next 5 Matches" key="next5matches">
-              {activeTab === "next5matches" && current_matches ? (
-                renderTable()
-              ) : (
-                <Skeleton active />
-              )}
+              {activeTab === "next5matches" && current_matches && renderTable()}
             </TabPane>
             <TabPane tab="All Matches" key="alldata">
-              {activeTab === "alldata" && matches ? (
-                renderTable()
-              ) : (
-                <Skeleton active />
-              )}
+              {activeTab === "alldata" && matches && renderTable()}
             </TabPane>
             <TabPane tab="Points" key="points">
               {activeTab === "points" && <Points />}

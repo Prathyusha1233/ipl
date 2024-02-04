@@ -31,7 +31,6 @@ function* validateUser({ payload }) {
   } catch (error) {
     yield put({ type: GET_VALID_USER_FAILED, message: error.message });
     if (error.response.status === 500) {
-      // Show a success notification
       notification.error({
         message: "User is not Registered",
         description: "User is not Registered",
@@ -40,7 +39,7 @@ function* validateUser({ payload }) {
     if (error) {
       notification.error({
         message: "Validate User Failed",
-        description: `${error.message}`,
+        description: `${error.response.data.message}`,
       });
     }
   }
@@ -60,7 +59,7 @@ function* scheduleMatches({ userId }) {
     if (error) {
       notification.error({
         message: "Failed to Get the Matches",
-        description: `${error.message}`,
+        description: `${error.response.data.message}`,
       });
     }
   }
@@ -81,7 +80,7 @@ function* currentScheduleMatches({ userId }) {
     if (error) {
       notification.error({
         message: "Failed to Get Current Matches",
-        description: `${error.message}`,
+        description: `${error.response.data.message}`,
       });
     }
   }
@@ -122,7 +121,7 @@ function* updateMatchesSaga({ updated_matches, selectedTeam, matchId }) {
     if (error) {
       notification.error({
         message: "Update Matches Failed",
-        description: `${error.message}`,
+        description: `${error.response.data.message}`,
       });
     }
   }
@@ -155,7 +154,7 @@ function* updateWinningMatchSaga({ updated_matches, winningTeam, matchId }) {
     if (error) {
       notification.error({
         message: "Update Winning Match Failed",
-        description: `${error.message}`,
+        description: `${error.response.data.message}`,
       });
     }
   }
@@ -170,7 +169,7 @@ function* getPointsSaga() {
     if (error) {
       notification.error({
         message: "Get Points Failed",
-        description: `${error.message}`,
+        description: `${error.response.data.message}`,
       });
     }
   }

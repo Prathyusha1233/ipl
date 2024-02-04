@@ -7,6 +7,7 @@ import {
   UPDATE_WINNING_MATCH,
   GET_CURRENT_MATCH_INFO,
   RESET_MATCHES,
+  RESET_POINTS,
 } from "./actions";
 
 export const validateUser = ({ payload }) => {
@@ -38,7 +39,7 @@ export const getPoints = () => {
 };
 
 export const resetPoints = () => {
-  return { type: GET_POINTS };
+  return { type: RESET_POINTS };
 };
 
 export const resetUI = () => {
