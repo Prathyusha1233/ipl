@@ -14,20 +14,31 @@ export const validateUser = ({ payload }) => {
   return { type: GET_VALID_USER, payload };
 };
 
-export const scheduleMatches = (userId) => {
-  return { type: GET_MATCH_INFO, userId };
+export const scheduleMatches = (token) => {
+  return { type: GET_MATCH_INFO, token };
 };
 
-export const currentScheduleMatches = (userId) => {
-  return { type: GET_CURRENT_MATCH_INFO, userId };
+export const currentScheduleMatches = (token) => {
+  return { type: GET_CURRENT_MATCH_INFO, token };
 };
 
 export const resetMatches = () => {
   return { type: RESET_MATCHES };
 };
 
-export const updateMatches = (updated_matches, selectedTeam, matchId) => {
-  return { type: UPDATE_MATCHES, updated_matches, selectedTeam, matchId };
+export const updateMatches = (
+  updated_matches,
+  selectedTeam,
+  matchId,
+  activeTab
+) => {
+  return {
+    type: UPDATE_MATCHES,
+    updated_matches,
+    selectedTeam,
+    matchId,
+    activeTab,
+  };
 };
 
 export const updateWinningMatch = (updated_matches, winningTeam, matchId) => {

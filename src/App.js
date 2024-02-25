@@ -16,7 +16,7 @@ const App = ({ userIsValid }) => {
           <Route path="/" element={<Home />} />
           {/* <Route path="/dashboard" element={<Dashboard />} /> */}
                   
-          <Route
+          {/* <Route
             exact
             path="/dashboard"
             element={
@@ -26,7 +26,7 @@ const App = ({ userIsValid }) => {
                 <Navigate to="/" />
               )
             } 
-          />       
+          />        */}
         </Routes>
          
       </BrowserRouter>

@@ -15,25 +15,19 @@ const { Column } = Table;
 const { TabPane } = Tabs;
 
 const Dashboard = React.memo(
-  ({ matches, userData, dispatch, current_matches }) => {
+  ({ matches, userData, dispatch, current_matches, setShowDashboard }) => {
     const [activeTab, setActiveTab] = useState("next5matches");
     useEffect(() => {
       if (Object.keys(userData).length > 0 && activeTab === "next5matches") {
-        dispatch(currentScheduleMatches(userData.userId));
+        dispatch(currentScheduleMatches(userData.token));
       }
       if (Object.keys(userData).length > 0 && activeTab === "alldata") {
-        dispatch(scheduleMatches(userData.userId));
+        dispatch(scheduleMatches(userData.token));
       }
       return () => {
         resetMatches();
       };
     }, [dispatch, userData, activeTab]);
-
-    // useEffect(() => {
-    //   if (Object.keys(userData).length === 0) {
-    //     dispatch(validateUser({ payload: { email, password } }));
-    //   }
-    // }, [userData]);
 
     const filteredData =
       activeTab === "next5matches" ? current_matches : matches;
@@ -42,7 +36,9 @@ const Dashboard = React.memo(
       const updated_matches = filteredData.map((item) =>
         item.matchId === matchId ? { ...item, selectedTeam } : item
       );
-      dispatch(updateMatches(updated_matches, selectedTeam, matchId));
+      dispatch(
+        updateMatches(updated_matches, selectedTeam, matchId, activeTab)
+      );
     };
 
     const handleChangeAdmin = (winningTeam, matchId) => {
@@ -206,7 +202,7 @@ const Dashboard = React.memo(
 
     return (
       <>
-        <NavBar />
+        <NavBar setShowDashboard={setShowDashboard} />
         <div className="welcome-message">Welcome</div>
         <div className="dashboard-container">
           <Tabs activeKey={activeTab} onChange={(key) => setActiveTab(key)}>

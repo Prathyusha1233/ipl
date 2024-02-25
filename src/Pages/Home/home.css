@@ -16,6 +16,16 @@
   background-color: #f8f8f8;
 }
 
+.session-expired-card {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to right, #e10000 0%, #2b0101 100%);
+}
+
 @media only screen and (max-width: 480px) {
   .app {
     background-image: url("../../images/iplcup.jpeg");

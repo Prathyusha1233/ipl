@@ -13,8 +13,8 @@ import {
 } from "../actions/actions";
 
 export const initialContacts = {
-  user: localStorage.getItem("userData")
-    ? JSON.parse(localStorage.getItem("userData"))
+  user: sessionStorage.getItem("userData")
+    ? JSON.parse(sessionStorage.getItem("userData"))
     : {},
   message: null,
   matches: [],
@@ -22,6 +22,7 @@ export const initialContacts = {
   points: [],
   isloading: false,
   isUserLoaded: false,
+  error: null,
 };
 
 export const userReducer = (state = initialContacts, action) => {
@@ -35,7 +36,7 @@ export const userReducer = (state = initialContacts, action) => {
     case GET_CURRENT_MATCH_INFO_SUCCESS:
       return { ...state, current_matches: action.data };
     case GET_MATCH_INFO_FAILED:
-      return { ...state, message: action.message };
+      return { ...state, error: action.message };
     case RESET_UI:
       sessionStorage.removeItem("userData");
       return { ...state, user: {} };

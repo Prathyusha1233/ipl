@@ -6,12 +6,13 @@ import { resetUI } from "../../actions/userActions";
 import { connect } from "react-redux";
 import { LogoutOutlined } from "@ant-design/icons";
 
-const NavBar = ({ dispatch }) => {
+const NavBar = ({ dispatch, setShowDashboard }) => {
   const navigate = useNavigate();
   const logOut = () => {
     dispatch(resetUI());
     window.history.replaceState(null, "", "/");
-    navigate("/");
+    // navigate("/");
+    setShowDashboard(false);
   };
 
   return (
