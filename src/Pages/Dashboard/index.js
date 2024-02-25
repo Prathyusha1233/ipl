@@ -57,6 +57,7 @@ const Dashboard = React.memo(
         hour: "numeric",
         minute: "numeric",
         hour12: true,
+        timeZone: "UTC",
       });
       return formattedDate;
     };
