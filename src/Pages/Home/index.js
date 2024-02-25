@@ -76,7 +76,8 @@ const Home = React.memo(({ dispatch, userData, apiError }) => {
                 }
               />
               <Input.Password
-                placeholder="Enter password"
+                placeholder="Enter 4-digit PIN"
+                type="number"
                 onChange={handlePasswordChange}
                 iconRender={(visible) =>
                   visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />

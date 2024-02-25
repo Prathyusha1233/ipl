@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.35940485.css",
-    "main.js": "/static/js/main.40fe674a.js",
+    "main.css": "/static/css/main.2f3f85bf.css",
+    "main.js": "/static/js/main.cb145fc8.js",
     "static/media/image1.jpg": "/static/media/image1.deca6752701709d03d47.jpg",
     "static/media/iplcup.jpeg": "/static/media/iplcup.c5aff089fc101ddddf21.jpeg",
     "index.html": "/index.html",
-    "main.35940485.css.map": "/static/css/main.35940485.css.map",
-    "main.40fe674a.js.map": "/static/js/main.40fe674a.js.map"
+    "main.2f3f85bf.css.map": "/static/css/main.2f3f85bf.css.map",
+    "main.cb145fc8.js.map": "/static/js/main.cb145fc8.js.map"
   },
   "entrypoints": [
-    "static/css/main.35940485.css",
-    "static/js/main.40fe674a.js"
+    "static/css/main.2f3f85bf.css",
+    "static/js/main.cb145fc8.js"
   ]
 }
