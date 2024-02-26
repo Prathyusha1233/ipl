@@ -15,7 +15,7 @@ const { Column } = Table;
 const { TabPane } = Tabs;
 
 const Dashboard = React.memo(
-  ({ matches, userData, dispatch, current_matches, setShowDashboard }) => {
+  ({ matches, userData, dispatch, current_matches }) => {
     const [activeTab, setActiveTab] = useState("next5matches");
     useEffect(() => {
       if (Object.keys(userData).length > 0 && activeTab === "next5matches") {
@@ -25,7 +25,7 @@ const Dashboard = React.memo(
         dispatch(scheduleMatches(userData.token));
       }
       return () => {
-        resetMatches();
+        dispatch(resetMatches());
       };
     }, [dispatch, userData, activeTab]);
 
@@ -53,7 +53,6 @@ const Dashboard = React.memo(
       const formattedDate = date.toLocaleString("en-US", {
         month: "short",
         day: "numeric",
-        //year: "numeric",
         hour: "numeric",
         minute: "numeric",
         hour12: true,
@@ -203,7 +202,7 @@ const Dashboard = React.memo(
 
     return (
       <>
-        <NavBar setShowDashboard={setShowDashboard} />
+        <NavBar />
         <div className="welcome-message">Welcome</div>
         <div className="dashboard-container">
           <Tabs activeKey={activeTab} onChange={(key) => setActiveTab(key)}>

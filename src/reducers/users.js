@@ -10,6 +10,7 @@ import {
   UPDATE_MATCHES_SUCCESS,
   UPDATE_WINNING_MATCH_SUCCESS,
   RESET_MATCHES,
+  SET_SESSION_EXPIRED,
 } from "../actions/actions";
 
 export const initialContacts = {
@@ -23,6 +24,7 @@ export const initialContacts = {
   isloading: false,
   isUserLoaded: false,
   error: null,
+  isSessionExpired: true,
 };
 
 export const userReducer = (state = initialContacts, action) => {
@@ -50,6 +52,11 @@ export const userReducer = (state = initialContacts, action) => {
       return { ...state, points: [] };
     case RESET_MATCHES:
       return { ...state, matches: [], current_matches: [] };
+    case SET_SESSION_EXPIRED:
+      return {
+        ...state,
+        isSessionExpired: action.expired,
+      };
     default:
       return state;
   }

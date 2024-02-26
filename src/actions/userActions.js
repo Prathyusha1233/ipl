@@ -8,6 +8,7 @@ import {
   GET_CURRENT_MATCH_INFO,
   RESET_MATCHES,
   RESET_POINTS,
+  SET_SESSION_EXPIRED,
 } from "./actions";
 
 export const validateUser = ({ payload }) => {
@@ -24,6 +25,10 @@ export const currentScheduleMatches = (token) => {
 
 export const resetMatches = () => {
   return { type: RESET_MATCHES };
+};
+
+export const setSessionExpired = (expired) => {
+  return { type: SET_SESSION_EXPIRED ,expired};
 };
 
 export const updateMatches = (

@@ -11,6 +11,8 @@ import {
   GET_VALID_USER,
   GET_VALID_USER_FAILED,
   GET_VALID_USER_SUCCESS,
+  RESET_UI,
+  SET_SESSION_EXPIRED,
   UPDATE_MATCHES,
   UPDATE_MATCHES_SUCCESS,
   UPDATE_WINNING_MATCH,
@@ -20,7 +22,7 @@ import { userSelector } from "../selectors/user";
 import { notification } from "antd";
 import { resetUI } from "../actions/userActions";
 
-const baseUrl = "http://3.141.196.2:8080/";
+const baseUrl = "http://localhost:8080/";
 
 function* validateUser({ payload }) {
   try {
@@ -52,14 +54,14 @@ function* validateUser({ payload }) {
   }
 }
 
-const getMatchInfo = (userId) => ({
+const getMatchInfo = (token) => ({
   type: GET_MATCH_INFO,
-  userId,
+  token,
 });
 
-const getCurrentMatchInfo = (userId) => ({
+const getCurrentMatchInfo = (token) => ({
   type: GET_CURRENT_MATCH_INFO,
-  userId,
+  token,
 });
 
 function* scheduleMatches({ token }) {
@@ -81,12 +83,13 @@ function* scheduleMatches({ token }) {
         description: `${error.response.data.message}`,
       });
     }
-    // if (error.response.data.message === "Invalid Token") {
-    //   notification.error({
-    //     message: "Session Expired, Please login",
-    //   });
-    //   resetUI();
-    // }
+    if (error.response.data.message === "Invalid token") {
+      yield put({ type: SET_SESSION_EXPIRED, expired: true });
+      yield put({ type: RESET_UI });
+      notification.error({
+        message: "Session Expired, Please login",
+      });
+    }
   }
 }
 
@@ -112,12 +115,13 @@ function* currentScheduleMatches({ token }) {
         description: `${error.response.data.message}`,
       });
     }
-    // if (error.response.data.message === "Invalid token") {
-    //   notification.error({
-    //     message: "Session Expired, Please login",
-    //   });
-    //   resetUI();
-    // }
+    if (error.response.data.message === "Invalid token") {
+      yield put({ type: SET_SESSION_EXPIRED, expired: true });
+      yield put({ type: RESET_UI });
+      notification.error({
+        message: "Session Expired, Please login",
+      });
+    }
   }
 }
 
@@ -132,7 +136,7 @@ function* updateMatchesSaga({
     const requestBody = {
       matchId: matchId,
       selectedTeam: selectedTeam,
-      userId: userdetails.userId,
+      token: userdetails.token,
     };
 
     const getTeamsForMatchId = (matchId) => {
@@ -143,7 +147,12 @@ function* updateMatchesSaga({
     const response = yield call(
       axios.post,
       `${baseUrl}select-team`,
-      requestBody
+      requestBody,
+      {
+        headers: {
+          token: `${userdetails.token}`,
+        },
+      }
     );
     if (response.status === 200) {
       // Show a success notification
@@ -156,8 +165,8 @@ function* updateMatchesSaga({
     }
     yield put({ type: UPDATE_MATCHES_SUCCESS, data: updated_matches });
     if (activeTab === "next5matches") {
-      yield put(getCurrentMatchInfo(userdetails.userId));
-    } else yield put(getMatchInfo(userdetails.userId));
+      yield put(getCurrentMatchInfo(userdetails.token));
+    } else yield put(getMatchInfo(userdetails.token));
   } catch (error) {
     yield put({
       type: GET_MATCH_INFO_FAILED,
@@ -169,11 +178,12 @@ function* updateMatchesSaga({
         description: `${error.response.data.message}`,
       });
     }
-    if (error.response.data.message === "Invalid Token") {
+    if (error.response.data.message === "Invalid token") {
+      yield put({ type: SET_SESSION_EXPIRED, expired: true });
+      yield put({ type: RESET_UI });
       notification.error({
         message: "Session Expired, Please login",
       });
-      resetUI();
     }
   }
 }
@@ -184,12 +194,17 @@ function* updateWinningMatchSaga({ updated_matches, winningTeam, matchId }) {
     const requestBody = {
       matchId: matchId,
       winningTeam: winningTeam,
-      userId: userdetails.userId,
+      token: userdetails.token,
     };
     const response = yield call(
       axios.post,
       `${baseUrl}winning-team`,
-      requestBody
+      requestBody,
+      {
+        headers: {
+          token: `${userdetails.token}`,
+        },
+      }
     );
     if (response.status === 200) {
       // Show a success notification
@@ -199,7 +214,7 @@ function* updateWinningMatchSaga({ updated_matches, winningTeam, matchId }) {
       });
     }
     yield put({ type: UPDATE_WINNING_MATCH_SUCCESS, data: updated_matches });
-    yield put(getMatchInfo(userdetails.userId));
+    yield put(getMatchInfo(userdetails.token));
   } catch (error) {
     yield put({
       type: GET_MATCH_INFO_FAILED,
@@ -211,18 +226,24 @@ function* updateWinningMatchSaga({ updated_matches, winningTeam, matchId }) {
         description: `${error.response.data.message}`,
       });
     }
-    if (error.response.data.message === "Invalid Token") {
+    if (error.response.data.message === "Invalid token") {
+      yield put({ type: SET_SESSION_EXPIRED, expired: true });
+      yield put({ type: RESET_UI });
       notification.error({
         message: "Session Expired, Please login",
       });
-      resetUI();
     }
   }
 }
 
 function* getPointsSaga() {
+  const userdetails = yield select(userSelector);
   try {
-    const points = yield call(axios.get, `${baseUrl}points`);
+    const points = yield call(axios.get, `${baseUrl}points`, {
+      headers: {
+        token: `${userdetails.token}`,
+      },
+    });
     yield put({ type: GET_POINTS_SUCCESS, data: points.data });
   } catch (error) {
     yield put({
@@ -235,12 +256,13 @@ function* getPointsSaga() {
         description: `${error.response.data.message}`,
       });
     }
-    // if (error.response.data.message === "Invalid Token") {
-    //   notification.error({
-    //     message: "Session Expired, Please login",
-    //   });
-    //   resetUI();
-    // }
+    if (error.response.data.message === "Invalid token") {
+      yield put({ type: SET_SESSION_EXPIRED, expired: true });
+      yield put({ type: RESET_UI });
+      notification.error({
+        message: "Session Expired, Please login",
+      });
+    }
   }
 }
 

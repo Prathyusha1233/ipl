@@ -8,22 +8,18 @@ import {
   EyeInvisibleOutlined,
   EyeTwoTone,
 } from "@ant-design/icons";
-import { resetUI, validateUser } from "../../actions/userActions";
+import { setSessionExpired, validateUser } from "../../actions/userActions";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import Dashboard from "../Dashboard";
-import { Modal } from "antd";
 
-const Home = React.memo(({ dispatch, userData, apiError }) => {
+const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-  const [showDashboard, setShowDashboard] = useState(false);
-  const [showSessionExpired, setShowSessionExpired] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
@@ -34,30 +30,13 @@ const Home = React.memo(({ dispatch, userData, apiError }) => {
   useEffect(() => {
     if (Object.keys(userData).length > 0) {
       sessionStorage.setItem("userData", JSON.stringify(userData));
-      setShowDashboard(true);
+      dispatch(setSessionExpired(false));
     }
   }, [navigate, userData]);
 
-  console.log("userData", userData);
-  console.log("apiError", apiError);
-
-  useEffect(() => {
-    if (apiError === "Invalid token") {
-      dispatch(resetUI());
-      setShowDashboard(false);
-      setShowSessionExpired(true);
-    }
-  }, [apiError]);
-
-  const handleModalLogin = () => {
-    // Handle login logic
-    // setModalVisible(false);
-    setShowSessionExpired(false);
-    // Close modal after login
-  };
   return (
     <div>
-      {!showDashboard && !showSessionExpired && (
+      {sessionExpired && (
         <div className="app">
           <div className="login-card-container">
             <Card
@@ -93,25 +72,12 @@ const Home = React.memo(({ dispatch, userData, apiError }) => {
           </div>
         </div>
       )}
-      {showSessionExpired && (
-        <Modal
-          title="Session Expired"
-          visible={showSessionExpired}
-          onCancel={() => setShowSessionExpired(false)}
-          footer={[
-            <Button key="ogin-button" type="primary" onClick={handleModalLogin}>
-              Login
-            </Button>,
-          ]}>
-          <p>Your session has expired. Please login again.</p>
-        </Modal>
-      )}
-      {showDashboard && <Dashboard setShowDashboard={setShowDashboard} />}
+      {!sessionExpired && <Dashboard />}
     </div>
   );
 });
 
 const mapStateToProps = (state) => {
-  return { userData: state.user, apiError: state.error };
+  return { userData: state.user, sessionExpired: state.isSessionExpired };
 };
 export default connect(mapStateToProps)(Home);

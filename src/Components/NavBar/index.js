@@ -2,17 +2,16 @@ import React from "react";
 import "./index.css";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
-import { resetUI } from "../../actions/userActions";
+import { resetUI, setSessionExpired } from "../../actions/userActions";
 import { connect } from "react-redux";
 import { LogoutOutlined } from "@ant-design/icons";
 
-const NavBar = ({ dispatch, setShowDashboard }) => {
+const NavBar = ({ dispatch }) => {
   const navigate = useNavigate();
   const logOut = () => {
     dispatch(resetUI());
+    dispatch(setSessionExpired(true));
     window.history.replaceState(null, "", "/");
-    // navigate("/");
-    setShowDashboard(false);
   };
 
   return (
