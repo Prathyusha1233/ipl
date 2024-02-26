@@ -44,8 +44,6 @@ const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
               title="Please login"
               headStyle={{ color: "#ffffff" }}>
               <Input
-                autoFocus={false}
-                readOnly
                 tabIndex="-1"
                 style={{ outline: "none" }}
                 placeholder="Enter your username"
@@ -59,8 +57,6 @@ const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
                 }
               />
               <Input.Password
-                autoFocus={false}
-                readOnly
                 tabIndex="-1"
                 style={{ outline: "none" }}
                 placeholder="Enter 4-digit PIN"
