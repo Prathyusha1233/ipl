@@ -45,7 +45,9 @@ const Dashboard = React.memo(
       const updated_matches = filteredData.map((item) =>
         item.matchId === matchId ? { ...item, winningTeam } : item
       );
-      dispatch(updateWinningMatch(updated_matches, winningTeam, matchId));
+      dispatch(
+        updateWinningMatch(updated_matches, winningTeam, matchId, activeTab)
+      );
     };
 
     const convertTimestampToReadableDate = (timestamp) => {

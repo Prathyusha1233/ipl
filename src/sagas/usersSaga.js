@@ -188,7 +188,12 @@ function* updateMatchesSaga({
   }
 }
 
-function* updateWinningMatchSaga({ updated_matches, winningTeam, matchId }) {
+function* updateWinningMatchSaga({
+  updated_matches,
+  winningTeam,
+  matchId,
+  activeTab,
+}) {
   try {
     const userdetails = yield select(userSelector);
     const requestBody = {
@@ -206,15 +211,23 @@ function* updateWinningMatchSaga({ updated_matches, winningTeam, matchId }) {
         },
       }
     );
+    const getTeamsForMatchId = (matchId) => {
+      const match = updated_matches.find((match) => match.matchId === matchId);
+      return match ? `${match.homeTeam} vs ${match.awayTeam}` : null;
+    };
     if (response.status === 200) {
       // Show a success notification
       notification.success({
         message: "Update Successful",
-        description: "The matches have been successfully updated.",
+        description: `${getTeamsForMatchId(
+          matchId
+        )} - Updated ${winningTeam} as your team. Good luck!`,
       });
     }
     yield put({ type: UPDATE_WINNING_MATCH_SUCCESS, data: updated_matches });
-    yield put(getMatchInfo(userdetails.token));
+    if (activeTab === "next5matches") {
+      yield put(getCurrentMatchInfo(userdetails.token));
+    } else yield put(getMatchInfo(userdetails.token));
   } catch (error) {
     yield put({
       type: GET_MATCH_INFO_FAILED,

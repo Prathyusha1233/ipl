@@ -28,7 +28,7 @@ export const resetMatches = () => {
 };
 
 export const setSessionExpired = (expired) => {
-  return { type: SET_SESSION_EXPIRED ,expired};
+  return { type: SET_SESSION_EXPIRED, expired };
 };
 
 export const updateMatches = (
@@ -46,8 +46,19 @@ export const updateMatches = (
   };
 };
 
-export const updateWinningMatch = (updated_matches, winningTeam, matchId) => {
-  return { type: UPDATE_WINNING_MATCH, updated_matches, winningTeam, matchId };
+export const updateWinningMatch = (
+  updated_matches,
+  winningTeam,
+  matchId,
+  activeTab
+) => {
+  return {
+    type: UPDATE_WINNING_MATCH,
+    updated_matches,
+    winningTeam,
+    matchId,
+    activeTab,
+  };
 };
 
 export const getPoints = () => {
