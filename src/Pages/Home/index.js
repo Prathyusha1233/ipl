@@ -44,8 +44,6 @@ const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
               title="Please login"
               headStyle={{ color: "#ffffff" }}>
               <Input
-                tabIndex="-1"
-                style={{ outline: "none" }}
                 placeholder="Enter your username"
                 className="username"
                 onChange={handleEmailChange}
@@ -57,8 +55,6 @@ const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
                 }
               />
               <Input.Password
-                tabIndex="-1"
-                style={{ outline: "none" }}
                 placeholder="Enter 4-digit PIN"
                 type="number"
                 onChange={handlePasswordChange}
