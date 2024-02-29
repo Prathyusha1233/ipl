@@ -1,8 +1,12 @@
 {
   "files": {
     "main.css": "/static/css/main.0c3644b8.css",
-    "main.js": "/static/js/main.2e8a80fe.js",
+    "main.js": "/static/js/main.bcadfb7f.js",
+    "static/media/dc.png": "/static/media/dc.2505ee6d486b32c7815f.png",
+    "static/media/kkr.png": "/static/media/kkr.4b5dc2051b3fe7be90d8.png",
     "static/media/srh1.png": "/static/media/srh1.8bea479949a1a368f2fc.png",
+    "static/media/rcb.png": "/static/media/rcb.e03d3ee21e5635e95ea8.png",
+    "static/media/mi.png": "/static/media/mi.d52347cb0f4a214c410b.png",
     "static/media/iplcup.jpeg": "/static/media/iplcup.c5aff089fc101ddddf21.jpeg",
     "static/media/csk.jpg": "/static/media/csk.5d953333264cac8ee4fc.jpg",
     "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
@@ -11,10 +15,10 @@
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
     "main.0c3644b8.css.map": "/static/css/main.0c3644b8.css.map",
-    "main.2e8a80fe.js.map": "/static/js/main.2e8a80fe.js.map"
+    "main.bcadfb7f.js.map": "/static/js/main.bcadfb7f.js.map"
   },
   "entrypoints": [
     "static/css/main.0c3644b8.css",
-    "static/js/main.2e8a80fe.js"
+    "static/js/main.bcadfb7f.js"
   ]
 }

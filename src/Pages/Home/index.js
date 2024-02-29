@@ -15,6 +15,10 @@ import Dashboard from "../Dashboard";
 import image1 from "../../images/csk.jpg";
 import image2 from "../../images/srh1.png";
 import image3 from "../../images/iplcup.jpeg";
+import image4 from "../../images/rcb.png";
+import image5 from "../../images/kkr.png";
+import image6 from "../../images/dc.png";
+import image7 from "../../images/mi.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -40,8 +44,7 @@ const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
     }
   }, [navigate, userData]);
 
-  const isMobile = window.innerWidth <= 768; // Check if it's a mobile device
-
+  const isMobile = window.innerWidth <= 768;
   return (
     <div>
       {sessionExpired && (
@@ -79,6 +82,34 @@ const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
               <div>
                 <img
                   src={image2}
+                  alt="Slide 2"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div>
+                <img
+                  src={image4}
+                  alt="Slide 2"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div>
+                <img
+                  src={image5}
+                  alt="Slide 2"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div>
+                <img
+                  src={image6}
+                  alt="Slide 2"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div>
+                <img
+                  src={image7}
                   alt="Slide 2"
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
