@@ -32,6 +32,8 @@ const Dashboard = React.memo(
     const filteredData =
       activeTab === "next5matches" ? current_matches : matches;
 
+    console.log("current_matches", current_matches);
+
     const handleCategoryChange = (selectedTeam, matchId) => {
       const updated_matches = filteredData.map((item) =>
         item.matchId === matchId ? { ...item, selectedTeam } : item
@@ -115,7 +117,7 @@ const Dashboard = React.memo(
     };
 
     const renderTable = () => {
-      return filteredData.length > 1 ? (
+      return filteredData.length > 0 ? (
         <Table
           style={{ width: "100%" }}
           pagination={false}
