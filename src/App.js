@@ -13,19 +13,7 @@ const App = ({ userIsValid }) => {
       <Routes>
                 
         <Route path="/" element={<Home />} />
-        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
                 
-        {/* <Route
-            exact
-            path="/dashboard"
-            element={
-              Object.keys(userIsValid).length > 0 ? (
-                <Dashboard />
-              ) : (
-                <Navigate to="/" />
-              )
-            } 
-          />        */}
       </Routes>
        
     </BrowserRouter>
