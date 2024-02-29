@@ -1,0 +1,68 @@
+$images: "../../images/csk.jpg", "../../images/srh1.png";
+
+// Select a random index
+$randomIndex: random(length($images));
+@debug $randomIndex;
+
+// Get the randomly selected image path
+$randomImage: nth($images, $randomIndex);
+
+// .app {
+//  background-image: url("../../images/image1.jpg");
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+// }
+.login-card {
+  width: 312px;
+  background: linear-gradient(to right, #e10000 0%, #2b0101 100%);
+}
+.username {
+  margin-bottom: 32px;
+}
+.login-button {
+  margin-top: 32px;
+  background-color: #f8f8f8;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensure full height */
+}
+
+.session-expired-card {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to right, #e10000 0%, #2b0101 100%);
+}
+
+@media only screen and (max-width: 480px) {
+  .app {
+    background-image: url("../../images/iplcup.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  .login-card-container {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .login-card {
+    width: 300px;
+    background: linear-gradient(to right, #fccf31 0%, #f55555 100%);
+  }
+
+  .login-button {
+    background-color: #f8f8f8;
+  }
+}

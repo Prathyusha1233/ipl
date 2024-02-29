@@ -8,15 +8,14 @@ import "./App.css";
 
 const App = ({ userIsValid }) => {
   return (
-    <div>
-      <BrowserRouter>
-              
-        <Routes>
-                  
-          <Route path="/" element={<Home />} />
-          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-                  
-          {/* <Route
+    <BrowserRouter>
+            
+      <Routes>
+                
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+                
+        {/* <Route
             exact
             path="/dashboard"
             element={
@@ -27,10 +26,9 @@ const App = ({ userIsValid }) => {
               )
             } 
           />        */}
-        </Routes>
-         
-      </BrowserRouter>
-    </div>
+      </Routes>
+       
+    </BrowserRouter>
   );
 };
 const mapStateToProps = (state) => {

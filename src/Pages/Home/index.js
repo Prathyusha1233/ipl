@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "antd";
-import "./home.css";
+import "./home.scss";
 import { Input, Tooltip, Button } from "antd";
 import {
   InfoCircleOutlined,
@@ -12,8 +12,44 @@ import { setSessionExpired, validateUser } from "../../actions/userActions";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import Dashboard from "../Dashboard";
+import image1 from "../../images/csk.jpg";
+import image2 from "../../images/srh1.png";
+import image3 from "../../images/iplcup.jpeg";
 
 const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
+  const backgroundImageOptions = [
+    image1,
+    image2,
+    // Add more image paths as needed
+  ];
+
+  // Select a random image path
+  const randomBackgroundImage =
+    backgroundImageOptions[
+      Math.floor(Math.random() * backgroundImageOptions.length)
+    ];
+
+  const isMobile = window.innerWidth <= 767;
+
+  console.log(isMobile);
+
+  const containerStyle = !isMobile
+    ? {
+        backgroundImage: `url(${randomBackgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        height: "100%",
+        width: "100%",
+        position: "fixed",
+        top: "0",
+      }
+    : {
+        backgroundImage: `url(${image3})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+      };
+
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,7 +73,7 @@ const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
   return (
     <div>
       {sessionExpired && (
-        <div className="app">
+        <div style={containerStyle}>
           <div className="login-card-container">
             <Card
               className="login-card"
