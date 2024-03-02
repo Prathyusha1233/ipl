@@ -15,11 +15,18 @@ const Points = ({ points, dispatch, userData }) => {
     };
   }, [dispatch,userData]);
 
-  const rankedData =
-    points &&
-    points
-      .sort((a, b) => b.totalPoints - a.totalPoints)
-      .map((item, index) => ({ ...item, rank: index + 1 }));
+const rankedData =
+  points &&
+  points
+    .sort((a, b) => b.totalPoints - a.totalPoints)
+    .map((item, index, array) => ({
+      ...item,
+      rank:
+        index === 0 || item.totalPoints !== array[index - 1].totalPoints
+          ? index + 1
+          : array[index - 1].rank,
+    }));
+
 
   return (
     <div className="dashboard-container">

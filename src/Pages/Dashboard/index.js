@@ -98,7 +98,6 @@ const Dashboard = React.memo(
 
       return (
         <Select
-          disabled={record.disable}
           style={{ width: 70 }}
           value={record.winningTeam}
           onChange={handleSelectChange}>
