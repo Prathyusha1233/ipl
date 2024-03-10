@@ -86,34 +86,6 @@ const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               </div>
-              <div>
-                <img
-                  src={image4}
-                  alt="Slide 2"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </div>
-              <div>
-                <img
-                  src={image5}
-                  alt="Slide 2"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </div>
-              <div>
-                <img
-                  src={image6}
-                  alt="Slide 2"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </div>
-              <div>
-                <img
-                  src={image7}
-                  alt="Slide 2"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </div>
             </Slider>
           </div>
           <div
