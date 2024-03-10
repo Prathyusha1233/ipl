@@ -18,15 +18,27 @@ const Points = ({ points, dispatch, userData }) => {
 const rankedData =
   points &&
   points
+    .slice()
     .sort((a, b) => b.totalPoints - a.totalPoints)
-    .map((item, index, array) => ({
-      ...item,
-      rank:
-        index === 0 || item.totalPoints !== array[index - 1].totalPoints
-          ? index + 1
-          : array[index - 1].rank,
-    }));
+    .reduce((acc, item, index, array) => {
+      let rank;
 
+      if (index === 0 || item.totalPoints !== array[index - 1].totalPoints) {
+        rank = (acc.length > 0 ? acc[acc.length - 1].rank : 0) + 1; 
+      } else {
+        rank = acc[acc.length - 1].rank; // Use the previous rank for tied users
+      }
+
+      acc.push({ ...item, rank });
+      return acc;
+    }, []);
+
+
+const sortedData1 = points && points.sort((a, b) => b.totalPoints-a.totalPoints);
+
+const rankedData1 = sortedData1.map((item, index) => {});
+
+    console.log("rankedData",rankedData);
 
   return (
     <div className="dashboard-container">

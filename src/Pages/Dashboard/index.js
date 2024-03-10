@@ -29,10 +29,29 @@ const Dashboard = React.memo(
       };
     }, [dispatch, userData, activeTab]);
 
-    const filteredData =
-      activeTab === "next5matches" ? current_matches : matches;
+    const matchesDisabledAndNotSelected = matches.map((match) => {
+      if (match.disable && match.selectedTeam === null) {
+        return { ...match, result: "LOST" };
+      } else {
+        return match;
+      }
+    });
 
-    console.log("current_matches", current_matches);
+    const currentMatchesDisabledAndNotSelected = current_matches.map(
+      (match) => {
+        if (match.disable && match.selectedTeam === null) {
+          return { ...match, result: "LOST" };
+        } else {
+          return match;
+        }
+      }
+    );
+    const filteredData =
+      activeTab === "next5matches"
+        ? currentMatchesDisabledAndNotSelected
+        : matchesDisabledAndNotSelected;
+
+    console.log("matches", matches);
 
     const handleCategoryChange = (selectedTeam, matchId) => {
       const updated_matches = filteredData.map((item) =>
@@ -206,7 +225,7 @@ const Dashboard = React.memo(
     return (
       <>
         <NavBar />
-        <div className="welcome-message">Welcome</div>
+        <div className="welcome-message">Welcome {userData.name}</div>
         <div className="dashboard-container">
           <Tabs activeKey={activeTab} onChange={(key) => setActiveTab(key)}>
             <TabPane tab="Next 5 Matches" key="next5matches">
