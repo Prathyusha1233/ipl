@@ -12,9 +12,6 @@ import { setSessionExpired, validateUser } from "../../actions/userActions";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import Dashboard from "../Dashboard";
-import image1 from "../../images/csk.jpg";
-import image2 from "../../images/srh1.png";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -39,53 +36,10 @@ const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
     }
   }, [navigate, userData]);
 
-  const isMobile = window.innerWidth <= 768;
   return (
     <div>
       {sessionExpired && (
-        <div className="app"
-          >
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              display: isMobile ? "none" : "block",
-            }}>
-            <Slider
-              dots
-              infinite
-              speed={500}
-              slidesToShow={1}
-              slidesToScroll={1}
-              autoplay
-              autoplaySpeed={5000}>
-              <div>
-                <img
-                  src={image1}
-                  alt="Slide 1"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </div>
-              <div>
-                <img
-                  src={image2}
-                  alt="Slide 2"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </div>
-            </Slider>
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-            }}>
+        <div className="app">
             <div className="login-card-container">
               <Card
                 className="login-card"
@@ -120,7 +74,6 @@ const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
                 </Button>
               </Card>
             </div>
-          </div>
         </div>
       )}
       {!sessionExpired && <Dashboard />}

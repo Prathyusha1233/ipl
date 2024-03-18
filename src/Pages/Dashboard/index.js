@@ -221,11 +221,10 @@ const Dashboard = React.memo(
         <Skeleton />
       );
     };
-
     return (
       <>
         <NavBar />
-        <div className="welcome-message">Welcome {userData.name}</div>
+        <div className="welcome-message">Welcome {userData.name} !</div>
         <div className="dashboard-container">
           <Tabs activeKey={activeTab} onChange={(key) => setActiveTab(key)}>
             <TabPane tab="Next 5 Matches" key="next5matches">
