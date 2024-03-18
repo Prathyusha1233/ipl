@@ -31,7 +31,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+     "obfuscate": "webpack --config webpack.config.js"
   },
   "eslintConfig": {
     "extends": [
@@ -55,6 +56,8 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "css-loader": "^6.10.0",
     "sass": "^1.71.1",
-    "sass-loader": "^14.1.1"
+    "sass-loader": "^14.1.1",
+    "terser-webpack-plugin": "^5.3.10",
+    "webpack-obfuscator": "^3.5.1"
   }
 }

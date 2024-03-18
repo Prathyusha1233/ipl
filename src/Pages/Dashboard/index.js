@@ -51,8 +51,6 @@ const Dashboard = React.memo(
         ? currentMatchesDisabledAndNotSelected
         : matchesDisabledAndNotSelected;
 
-    console.log("matches", matches);
-
     const handleCategoryChange = (selectedTeam, matchId) => {
       const updated_matches = filteredData.map((item) =>
         item.matchId === matchId ? { ...item, selectedTeam } : item
