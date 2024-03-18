@@ -48,13 +48,14 @@ const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
   return (
     <div>
       {sessionExpired && (
-        <div
-          style={{
-            backgroundImage: `url(${image3})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            minHeight: "100vh",
-          }}>
+        <div className="app"
+          // style={{
+          //   backgroundImage: `url(${image3})`,
+          //   backgroundSize: "cover",
+          //   backgroundPosition: "center",
+          //   minHeight: "100vh",
+          // }}
+          >
           <div
             style={{
               position: "absolute",
@@ -71,7 +72,7 @@ const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
               slidesToShow={1}
               slidesToScroll={1}
               autoplay
-              autoplaySpeed={3000}>
+              autoplaySpeed={5000}>
               <div>
                 <img
                   src={image1}
