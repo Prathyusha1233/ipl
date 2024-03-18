@@ -30,9 +30,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "GENERATE_SOURCEMAP=false react-scripts test",
     "eject": "react-scripts eject",
-     "obfuscate": "webpack --config webpack.config.js"
+    "obfuscate": "webpack --config webpack.config.js"
   },
   "eslintConfig": {
     "extends": [
