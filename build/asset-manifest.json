@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.33e4ba80.css",
+    "main.css": "/static/css/main.3957f789.css",
     "main.js": "/static/js/main.6aca7e72.js",
     "static/media/csk.jpg": "/static/media/csk.5d953333264cac8ee4fc.jpg",
     "static/media/srh2.jpeg": "/static/media/srh2.4e1d94b19d875676ed04.jpeg",
@@ -11,7 +11,7 @@
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.33e4ba80.css",
+    "static/css/main.3957f789.css",
     "static/js/main.6aca7e72.js"
   ]
 }
