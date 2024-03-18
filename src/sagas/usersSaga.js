@@ -20,7 +20,6 @@ import {
 } from "../actions/actions";
 import { userSelector } from "../selectors/user";
 import { notification } from "antd";
-import { resetUI } from "../actions/userActions";
 
 const baseUrl = "http://3.141.196.2:8080/";
 

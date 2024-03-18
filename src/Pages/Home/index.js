@@ -14,11 +14,6 @@ import { connect } from "react-redux";
 import Dashboard from "../Dashboard";
 import image1 from "../../images/csk.jpg";
 import image2 from "../../images/srh1.png";
-import image3 from "../../images/iplcup.jpeg";
-import image4 from "../../images/rcb.png";
-import image5 from "../../images/kkr.png";
-import image6 from "../../images/dc.png";
-import image7 from "../../images/mi.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -49,12 +44,6 @@ const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
     <div>
       {sessionExpired && (
         <div className="app"
-          // style={{
-          //   backgroundImage: `url(${image3})`,
-          //   backgroundSize: "cover",
-          //   backgroundPosition: "center",
-          //   minHeight: "100vh",
-          // }}
           >
           <div
             style={{
