@@ -52,12 +52,13 @@ body {
     background-size: 100%;
     min-height: 100vh;
     overflow: hidden;
-    margin-top: -50px;
+    margin-top: -20px;
+      margin-bottom: -20px;
   }
   .login-card-container {
     display: flex;
     position: absolute;
-    top: 55%;
+    top: 53%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
