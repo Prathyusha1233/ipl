@@ -207,16 +207,18 @@ const Dashboard = React.memo(
               )}
             />
           )}
-          <Column
-            title="Stats"
-            key="count"
-            width={200}
-            render={(text, record) => (
-              <div style={{ whiteSpace: "pre-line", width: "55px" }}>
-                {splitString(record?.count)}
-              </div>
-            )}
-          />
+          {activeTab === "alldata" && (
+            <Column
+              title="Stats"
+              key="count"
+              width={70}
+              render={(text, record) => (
+                <div style={{ whiteSpace: "pre-line", width: "60px" }}>
+                  {splitString(record?.count)}
+                </div>
+              )}
+            />
+          )}
           <Column
             width={70}
             title="Result"
@@ -237,7 +239,7 @@ const Dashboard = React.memo(
     return (
       <>
         <NavBar />
-        <div className="welcome-message">Welcome {userData.name} !</div>
+        <div className="welcome-message">Welcome {userData.name}!</div>
         <div className="dashboard-container">
           <Tabs activeKey={activeTab} onChange={(key) => setActiveTab(key)}>
             <TabPane tab="Next 5 Matches" key="next5matches">
