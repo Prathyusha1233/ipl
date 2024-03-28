@@ -82,6 +82,11 @@ const Dashboard = React.memo(
       return formattedDate;
     };
 
+    const splitString = (record) => {
+      const afteraSplit = record?.split(",").join("\n");
+      return afteraSplit;
+    };
+
     const { Option } = Select;
     const SelectTeamColumn = ({ record, onSelectTeam }) => {
       const handleSelectChange = (value) => {
@@ -202,6 +207,16 @@ const Dashboard = React.memo(
               )}
             />
           )}
+          <Column
+            title="Stats"
+            key="count"
+            width={200}
+            render={(text, record) => (
+              <div style={{ whiteSpace: "pre-line", width: "55px" }}>
+                {splitString(record?.count)}
+              </div>
+            )}
+          />
           <Column
             width={70}
             title="Result"
