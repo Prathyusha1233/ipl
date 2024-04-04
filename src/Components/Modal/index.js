@@ -67,7 +67,6 @@ export const ModalComp = ({ record }) => {
             />
           </div>
         </div>
-        {/* <Table columns={columns} dataSource={tableData} />; */}
       </Modal>
     </>
   );

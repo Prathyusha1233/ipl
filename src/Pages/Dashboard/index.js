@@ -245,7 +245,12 @@ const Dashboard = React.memo(
               width={70}
               render={(text, record) => (
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <div style={{ whiteSpace: "pre-line", width: "60px" }}>
+                  <div
+                    style={{
+                      whiteSpace: "pre-line",
+                      width: "60px",
+                      marginRight: "10px",
+                    }}>
                     {splitString(record?.count)}
                   </div>
                   {record?.homeTeamUsers && record?.awayTeamUsers && (
