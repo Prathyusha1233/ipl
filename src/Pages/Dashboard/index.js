@@ -11,6 +11,9 @@ import {
 import { connect } from "react-redux";
 import { Select, Table, Tag, Skeleton, Tabs } from "antd";
 import Points from "../../Components/Points";
+import { ModalComp } from "../../Components/Modal";
+import { useRef } from "react";
+
 const { Column } = Table;
 const { TabPane } = Tabs;
 
@@ -28,6 +31,32 @@ const Dashboard = React.memo(
         dispatch(resetMatches());
       };
     }, [dispatch, userData, activeTab]);
+
+    const tableRef = useRef(null);
+
+    useEffect(() => {
+      const currentDate = new Date().toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      });
+      const rowIndex = matches.findIndex(
+        (match) =>
+          new Date(match.matchDate).toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          }) === currentDate
+      );
+      if (rowIndex !== -1) {
+        const rowElement = document.querySelector(
+          `[data-row-key="${matches[rowIndex].matchId}"]`
+        );
+        if (rowElement) {
+          rowElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }, [matches]);
 
     const matchesDisabledAndNotSelected = matches.map((match) => {
       if (match.disable && match.selectedTeam === null) {
@@ -144,6 +173,8 @@ const Dashboard = React.memo(
           pagination={false}
           dataSource={filteredData}
           bordered
+          rowKey="matchId"
+          ref={tableRef}
           rowClassName={(record, index) =>
             index % 2 === 0 ? "even-row" : "odd-row"
           }
@@ -213,8 +244,13 @@ const Dashboard = React.memo(
               key="count"
               width={70}
               render={(text, record) => (
-                <div style={{ whiteSpace: "pre-line", width: "60px" }}>
-                  {splitString(record?.count)}
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <div style={{ whiteSpace: "pre-line", width: "60px" }}>
+                    {splitString(record?.count)}
+                  </div>
+                  {record?.homeTeamUsers && record?.awayTeamUsers && (
+                    <ModalComp record={record} />
+                  )}
                 </div>
               )}
             />
