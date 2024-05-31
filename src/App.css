@@ -23,11 +23,11 @@
 
 @media only screen and (max-width: 480px) {
   .app {
-    height: 900px;
+    height: 976px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    margin: -26px;
+    margin: -67px;
   }
   .login-card-container {
     display: flex;
