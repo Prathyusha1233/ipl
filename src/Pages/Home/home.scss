@@ -1,5 +1,5 @@
 .app {
-  background-image: url("../../images/csk.jpg");
+  background-image: url("../../images/t205.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -8,13 +8,13 @@
 }
 .login-card {
   width: 312px;
-  background: linear-gradient(to right, #e10000 0%, #2b0101 100%);
+  background: linear-gradient(to right, #62b4fa 0%, #0a32c4 100%)
 }
 .username {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 .login-button {
-  margin-top: 32px;
+  margin-top: 24px;
   background-color: #f8f8f8;
 }
 
@@ -32,7 +32,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(to right, #e10000 0%, #2b0101 100%);
+  background: linear-gradient(to right, #62b4fa 0%, #0a32c4 100%)
 }
 
 .slider {
@@ -46,25 +46,27 @@ body {
 
 @media only screen and (max-width: 480px) {
   .app {
-    background-image: url("../../images/srh2.jpeg");
+    background-image: url("../../images/t20.jpeg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
     min-height: 100vh;
     overflow: hidden;
-    margin-top: -50px;
+    margin-top: -75px;
     margin-right: -26px;
   }
   .login-card-container {
     display: flex;
     position: absolute;
-    top: 53%;
+    top: 15%;
     left: 51%;
     transform: translate(-50%, -50%);
   }
   .login-card {
-    width: 300px;
-    background: linear-gradient(to right, #7e0a0c 0%, #ed7426c7 100%);
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(to right, #006ad8 0%, #1a2525 100%);
+    
   }
 
   .login-button {
