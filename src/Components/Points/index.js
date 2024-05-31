@@ -24,21 +24,14 @@ const rankedData =
       let rank;
 
       if (index === 0 || item.totalPoints !== array[index - 1].totalPoints) {
-        rank = (acc.length > 0 ? acc[acc.length - 1].rank : 0) + 1; 
+        rank = (acc.length > 0 ? acc.length:0) + 1; 
       } else {
-        rank = acc[acc.length - 1].rank; // Use the previous rank for tied users
+        rank = acc[acc.length - 1].rank;
       }
 
       acc.push({ ...item, rank });
       return acc;
     }, []);
-
-
-const sortedData1 = points && points.sort((a, b) => b.totalPoints-a.totalPoints);
-
-const rankedData1 = sortedData1.map((item, index) => {});
-
-    console.log("rankedData",rankedData);
 
   return (
     <div className="dashboard-container">
