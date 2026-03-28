@@ -9,14 +9,12 @@ import {
   EyeTwoTone,
 } from "@ant-design/icons";
 import { setSessionExpired, validateUser } from "../../actions/userActions";
-import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import Dashboard from "../Dashboard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleEmailChange = (e) => {
@@ -34,7 +32,7 @@ const Home = React.memo(({ dispatch, userData, sessionExpired }) => {
       sessionStorage.setItem("userData", JSON.stringify(userData));
       dispatch(setSessionExpired(false));
     }
-  }, [navigate, userData]);
+  }, [userData, dispatch]);
 
   return (
     <div>

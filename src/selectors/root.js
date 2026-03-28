@@ -1,3 +1,5 @@
-export default state => {
+const rootSelector = state => {
     return state;
-}
+};
+
+export default rootSelector;

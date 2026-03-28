@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal, Space, Table, Tag, List } from "antd";
+import { Button, Modal, List } from "antd";
 import { InfoCircleTwoTone } from "@ant-design/icons";
 
 export const ModalComp = ({ record }) => {
@@ -43,9 +43,9 @@ export const ModalComp = ({ record }) => {
 
   return (
     <>
-      <a onClick={showModal}>
+      <Button type="link" onClick={showModal} style={{ padding: 0 }}>
         <InfoCircleTwoTone />
-      </a>
+      </Button>
       <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ flex: 1 }}>
